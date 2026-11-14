@@ -10,17 +10,14 @@ public class Row implements Serializable {
         this.values = values;
     }
 
-    
     public Object get(int index) {
         return values.get(index);
     }
 
-    
     public void set(int index, Object value) {
         values.set(index, value);
     }
 
-    
     public int size() {
         return values.size();
     }
