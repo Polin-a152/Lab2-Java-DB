@@ -6,8 +6,7 @@ public class SqlParser {
 
     public SqlParser(Database db) {
         this.db = db;
-    }
-   
+    } 
     public String execute(String sql) {
         sql = sql.trim();
         if (sql.length() == 0) {
@@ -52,10 +51,8 @@ public class SqlParser {
 
         String left = sql.substring(12, valuesPosition).trim();
         String valuesText = sql.substring(valuesPosition + 8).trim();
-
         String tableName;
         ArrayList<String> insertColumns = new ArrayList<String>();
-
         int open = left.indexOf('(');
         if (open >= 0) {
             int close = left.lastIndexOf(')');
@@ -125,16 +122,13 @@ public class SqlParser {
             }
             db.validateInsert(tableName, row);
             newRows.add(row);
-        }
-
-        
+        } 
         for (int i = 0; i < newRows.size(); i++) {
             db.insert(tableName, newRows.get(i));
         }
 
         return "Добавлено записей: " + newRows.size();
     }
-
     private ArrayList<String> readValueGroups(String text) {
         ArrayList<String> groups = new ArrayList<String>();
         int depth = 0;
@@ -206,8 +200,6 @@ public class SqlParser {
                 throw new IllegalArgumentException("Нет столбца: " + condition[0]);
             }
             Object wanted = table.getColumns().get(column).convert(condition[2]);
-
-            
             if (column == table.primaryKeyNumber() && condition[1].equals("=")) {
                 Row row = table.findByPrimaryKey(wanted);
                 if (row != null) {
@@ -266,8 +258,6 @@ public class SqlParser {
                 selected.add(row);
             }
         }
-
-        
         int keyNumber = table.primaryKeyNumber();
         if (changeColumn == keyNumber && keyNumber >= 0 && selected.size() > 0) {
             if (newValue == null) {
@@ -320,8 +310,7 @@ public class SqlParser {
                 selected.add(row);
             }
         }
-
-        
+  
         for (int i = 0; i < selected.size(); i++) {
             db.checkDelete(table, selected.get(i));
         }
