@@ -11,13 +11,10 @@ public class Storage {
 
     public Storage(String fileName) {
         this.fileName = fileName;
-    }
-
-    
+    } 
     public boolean exists() {
         return new File(fileName).exists();
     }
-
     public void save(Database db) throws Exception {
         File file = new File(fileName);
         File parent = file.getParentFile();
