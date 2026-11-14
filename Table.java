@@ -114,7 +114,6 @@ public class Table implements Serializable {
         }
     }
 
-    
     public String select(ArrayList<String> names, ArrayList<Row> found) {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
 
