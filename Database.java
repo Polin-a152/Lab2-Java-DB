@@ -27,8 +27,7 @@ public class Database implements Serializable {
 
         return db;
     }
-
-    
+  
     public void createTable(String name, ArrayList<Column> columns) {
         name = name.toLowerCase();
         if (tables.containsKey(name)) {
@@ -69,7 +68,6 @@ public class Database implements Serializable {
         return false;
     }
 
-    
     public Table getTable(String name) {
         Table table = tables.get(name.toLowerCase());
         if (table == null) {
@@ -120,7 +118,6 @@ public class Database implements Serializable {
         }
     }
 
-    
     public void insert(String tableName, Row row) {
         validateInsert(tableName, row);
         getTable(tableName).insert(row);
