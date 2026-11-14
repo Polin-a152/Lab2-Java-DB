@@ -248,6 +248,4 @@ SQL-команды вводятся целиком в одну строку по
 2. Oracle. The Java Tutorials. https://docs.oracle.com/javase/tutorial/
 3. Baeldung. Time Complexity of Java Collections. https://www.baeldung.com/java-collections-complexity
 4. LogicBig. Java Collection Interfaces and Implementations. https://www.logicbig.com/tutorials/core-java-tutorial/java-collections/java-collection-cheatsheet.html
-5. Лафоре Р. Структуры данных и алгоритмы в Java. СПб.: Питер, 2013.
-6. Пруцков А. В. Программирование на языке Java. М.: КУРС, 2018. https://znanium.com/catalog/product/1017180
-7. Вязовик Н. А. Программирование на Java. Национальный открытый университет «ИНТУИТ». https://e.lanbook.com/book/100405
+
