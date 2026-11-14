@@ -106,52 +106,6 @@ classDiagram
     IndexBenchmark ..> HashMap : benchmark
 ```
 
-### Диаграмма последовательности добавления записи
-
-Диаграмма показывает взаимодействие компонентов при выполнении команды `INSERT INTO cars ...`.
-
-```mermaid
-sequenceDiagram
-    actor User as Пользователь
-    participant Main
-    participant Parser as SqlParser
-    participant DB as Database
-    participant Table
-    participant Storage
-
-    User->>Main: Вводит INSERT INTO cars ...
-    activate Main
-    Main->>Parser: execute(sql)
-    activate Parser
-    Parser->>DB: getTable("cars")
-    activate DB
-    DB-->>Parser: Объект Table
-    deactivate DB
-    Parser->>Table: getColumns()
-    activate Table
-    Table-->>Parser: Описание столбцов
-    deactivate Table
-    Note over Parser: Преобразование значений<br/>в типы столбцов
-    Parser->>DB: insert("cars", row)
-    activate DB
-    DB->>DB: Проверка внешних ключей
-    DB->>Table: insert(row)
-    activate Table
-    Table->>Table: Проверка первичного ключа
-    Table-->>DB: Запись добавлена
-    deactivate Table
-    DB-->>Parser: Успешное выполнение
-    deactivate DB
-    Parser-->>Main: "Запись добавлена"
-    deactivate Parser
-    Main->>User: Вывод результата
-    Main->>Storage: save(db)
-    activate Storage
-    Storage-->>Main: Данные сохранены
-    deactivate Storage
-    deactivate Main
-```
-
 ## 2. Сравнение поиска с индексом и без индекса
 
 Для сравнения двух способов поиска предусмотрен отдельный класс `IndexBenchmark`. Он запускается самостоятельно и не является пунктом основного меню программы.
