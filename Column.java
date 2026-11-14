@@ -37,10 +37,6 @@ public class Column implements Serializable {
     public String getReferenceColumn() {
         return referenceColumn;
     }
-
-    
-
-
     public Object convert(String value) {
         value = value.trim();
 
