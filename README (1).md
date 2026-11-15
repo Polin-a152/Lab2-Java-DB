@@ -106,6 +106,41 @@ classDiagram
     IndexBenchmark ..> HashMap : benchmark
 ```
 
+### Диаграмма последовательностей
+
+Пример обработки SQL-запроса `INSERT` (вставка записи) от момента ввода пользователем до сохранения на диск.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Пользователь
+    participant Main as Main
+    participant Parser as SqlParser
+    participant DB as Database
+    participant Table as Table
+    participant Storage as Storage
+
+    User->>Main: Вводит "INSERT INTO cars VALUES (1, 'Toyota')"
+    Main->>Parser: execute(sql)
+    activate Parser
+    Parser->>DB: getTable("cars")
+    activate DB
+    DB-->>Parser: возвращает объект Table
+    deactivate DB
+    Parser->>Table: insert(Row)
+    activate Table
+    Note over Table: Проверка уникальности<br/>первичного ключа
+    Table-->>Parser: результат операции
+    deactivate Table
+    Parser-->>Main: возвращает строку результата
+    deactivate Parser
+    Main->>Storage: save(db)
+    activate Storage
+    Storage-->>Main: данные сохранены на диск
+    deactivate Storage
+    Main-->>User: Выводит "Добавлено записей: 1"
+```
+
 ## 2. Сравнение поиска с индексом и без индекса
 
 Для оценки эффективности индекса был проведён тест с использованием 100 000 целочисленных значений и 20 000 поисковых операций.
