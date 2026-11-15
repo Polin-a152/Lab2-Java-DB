@@ -46,6 +46,9 @@ public class Main {
                     String result = parser.execute(sql);
                     System.out.println(result);
                     storage.save(db);
+                } catch (NumberFormatException e) {
+                    String badValue = e.getMessage().replace("For input string: ", "");
+                    System.out.println("Ошибка: неверный формат данных. Ожидалось число, но получен текст: " + badValue);
                 } catch (Exception e) {
                     System.out.println("Ошибка: " + e.getMessage());
                 }
